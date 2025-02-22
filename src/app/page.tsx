@@ -1,95 +1,96 @@
-import Image from "next/image";
+// import styles from "./page.module.css";
+// import Layout from "./_components/Layout";
+// // import Menu from "./_components/Menu";
+// import Main from "./_components/Main";
+// import Sub from "./_components/Sub";
+// import Ad from "./_components/Ad";
+// import { TOP_ARTICLE_LIST_LIMIT } from "@/app/_constants";
+// import { getArticleList } from "@/app/_libs/microcms";
+// import Cards from "./_components/Cards";
+// import Ranking from "./_components/Ranking";
+// import SearchField from "./_components/SearchField";
+// import ButtonLink from "./_components/ButtonLink";
+// import Pickup from "./_components/Pickup";
+
+// export const revalidate = 60;
+
+// type Props = {
+//   searchParams: {
+//     rankingDraftKey?: string;
+//     pickupDraftKey?: string;
+//   };
+// };
+
+// export default async function Page({ searchParams }: Props) {
+//   const data = await getArticleList({
+//     limit: TOP_ARTICLE_LIST_LIMIT,
+//   });
+//   return (
+//     <Layout>
+//       <Main>
+//         <h1>新着情報</h1>
+//         <Cards articles={data.contents} />
+//         <div className={styles.buttonLink}>
+//           <ButtonLink href="/articles">Read More</ButtonLink>
+//         </div>
+//       </Main>
+//       <Sub>
+//         <Ad />
+//         <Pickup draftKey={searchParams.pickupDraftKey} />
+//         <SearchField />
+//         <Ranking draftKey={searchParams.rankingDraftKey} />
+//         <Ad />
+//       </Sub>
+//     </Layout>
+//   );
+// }
+
 import styles from "./page.module.css";
+import Layout from "./_components/Layout";
+import Main from "./_components/Main";
+import Sub from "./_components/Sub";
+import Ad from "./_components/Ad";
+import { TOP_ARTICLE_LIST_LIMIT } from "@/app/_constants";
+import { getArticleList } from "@/app/_libs/microcms";
+import Cards from "./_components/Cards";
+import Ranking from "./_components/Ranking";
+import SearchField from "./_components/SearchField";
+import ButtonLink from "./_components/ButtonLink";
+import Pickup from "./_components/Pickup";
 
-export default function Home() {
+export const revalidate = 60;
+
+type Props = {
+  searchParams: {
+    rankingDraftKey?: string;
+    pickupDraftKey?: string;
+  };
+};
+export default async function Page({ searchParams }: Props) {
+  const data = await getArticleList({
+    limit: TOP_ARTICLE_LIST_LIMIT,
+  });
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+    <Layout>
+      <div className={styles.container}>
+        {/* メインエリア */}
+        <Main className={styles.mainContent}>
+          {/* 新着情報リスト */}
+          <h1 className={styles.sectionTitle}>新着情報</h1>
+          <Cards articles={data.contents} />
+          <div className={styles.buttonLink}>
+            <ButtonLink href="/articles">Read More</ButtonLink>
+          </div>
+        </Main>
+        {/* サイドバー */}
+        <Sub className={styles.sidebar}>
+          <Ad />
+          <Pickup draftKey={searchParams.pickupDraftKey} />
+          <SearchField />
+          <Ranking draftKey={searchParams.rankingDraftKey} />
+          <Ad />
+        </Sub>
+      </div>
+    </Layout>
   );
 }

@@ -1,0 +1,19 @@
+.pickup {
+  position: relative;
+  padding-right: 20px; /* 余白を追加 */
+}
+.pickup::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 100%;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 5px,
+    #ccc 5px,
+    #ccc 10px
+  );
+}
