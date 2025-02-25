@@ -23,8 +23,8 @@ export default function ArticleList({ article }: Props) {
                 src={articles.image1.url}
                 alt=""
                 className={styles.image}
-                width={articles.image1.width}
-                height={articles.image1.height}
+                width={1200}
+                height={630}
               />
             ) : (
               <Image

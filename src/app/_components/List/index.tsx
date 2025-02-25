@@ -13,8 +13,8 @@ export default function List({ article }: Props) {
       <Image
         src={article.image1.url}
         alt=""
-        width={120}
-        height={80}
+        width={100}
+        height={75}
         className={styles.image}
       />
       <div className={styles.title}>{article.title}</div>

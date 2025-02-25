@@ -1,4 +1,4 @@
-// import { getRanking } from "@/app/_libs/microcms";
+// import { getPickup } from "@/app/_libs/microcms";
 // import { RANKING_LIMIT } from "@/app/_constants";
 // import List from "@/app/_components/List";
 // import styles from "./index.module.css";
@@ -7,15 +7,15 @@
 //   draftKey?: string;
 // };
 
-// export default async function Ranking({ draftKey }: Props) {
-//   const data = await getRanking({
+// export default async function Predict({ draftKey }: Props) {
+//   const data = await getPickup({
 //     limit: RANKING_LIMIT,
 //     draftKey,
 //   }).catch(() => ({ articles: [] }));
 //   const articles = data.articles;
 //   return (
 //     <div>
-//       <h2 className={styles.sectionTitle}>週間ランキング</h2>
+//       <h2 className={styles.sectionTitle}>予測モデル結果</h2>
 //       {articles.length === 0 ? (
 //         <p>記事がありません。</p>
 //       ) : (
@@ -46,7 +46,7 @@ export default async function Ranking({ draftKey }: Props) {
   const articles = data.articles;
   return (
     <div className={styles.rankingContainer}>
-      <h2 className={styles.sectionTitle}>週間ランキング</h2>
+      <h2 className={styles.sectionTitle}>予測モデル結果</h2>
       {articles.length === 0 ? (
         <p>記事がありません。</p>
       ) : (

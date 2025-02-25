@@ -1,47 +1,104 @@
-/* .buttonLink {
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-} */
-
-/* コンテナ全体 */
 .container {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  max-width: 1250px;
+  max-width: 1300px;
   margin: 0 auto;
   padding: 40px 20px;
   gap: 40px;
 }
-/* メインエリア */
+
 .mainContent {
   flex: 3;
-  max-width: 800px;
-  min-width: 600px;
+  max-width: 850px;
+  min-width: 650px;
+  margin-top: 530px;
 }
-/* サイドバー */
+
 .sidebar {
   flex: 1;
-  max-width: 330px;
-  min-width: 250px;
+  max-width: 370px;
+  min-width: 290px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 5px;
+  margin-top: 530px;
 }
-/* セクションタイトル */
+
 .sectionTitle {
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 20px;
 }
-/* ボタンリンク */
+
+.cards {
+  margin-top: 20px;
+}
+
 .buttonLink {
   margin-top: 20px;
   display: flex;
   justify-content: center;
 }
-/* ピックアップエリア */
-.pickupWrapper {
-  margin-bottom: 40px;
+
+.sliderWrapper {
+  width: 100%;
+  max-width: 1250px;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+  position: absolute;
+  z-index: 1;
+  margin: 30px auto;
+  left: 0;
+  right: 0;
+}
+
+/* ======= レスポンシブ対応 ======= */
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    padding: 20px;
+  }
+
+  .mainContent {
+    width: 100%;
+    max-width: 100%;
+    min-width: unset;
+    margin-top: 20px;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .sidebar {
+    width: 100%;
+    max-width: 100%;
+    min-width: unset;
+    margin-top: 20px;
+  }
+
+  .sliderWrapper {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    padding: 10px 0;
+    margin: 0 auto;
+  }
+}
+
+/* スマホ（横幅600px以下） */
+@media (max-width: 600px) {
+  .cards {
+    grid-template-columns: repeat(1, 1fr); /* 1列表示 */
+  }
 }

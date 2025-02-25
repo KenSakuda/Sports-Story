@@ -11,7 +11,7 @@ type Props = {
 export default function Pagination({
   totalCount,
   current = 1,
-  basePath = "/news",
+  basePath = "/articles",
 }: Props) {
   const pages = Array.from(
     { length: Math.ceil(totalCount / DETAIL_ARTICLE_LIST_LIMIT) },
