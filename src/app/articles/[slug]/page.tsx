@@ -19,12 +19,12 @@ import styles from "./page.module.css";
 import { notFound } from "next/navigation";
 
 type Props = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
-  searchParams: {
+  }>;
+  searchParams: Promise<{
     draftKey?: string;
-  };
+  }>;
 };
 
 export const revalidate = 60;
@@ -33,8 +33,11 @@ export async function generateMetadata({
   params,
   searchParams,
 }: Props): Promise<Metadata> {
-  const data = await getArticleDetail(params.slug, {
-    draftKey: searchParams.draftKey,
+  const resolvedParams = await params;
+  const resolvedSearchParams = await searchParams;
+
+  const data = await getArticleDetail(resolvedParams.slug, {
+    draftKey: resolvedSearchParams.draftKey,
   });
 
   return {
@@ -49,8 +52,11 @@ export async function generateMetadata({
 }
 
 export default async function Page({ params, searchParams }: Props) {
-  const data = await getArticleDetail(params.slug, {
-    draftKey: searchParams.draftKey,
+  const resolvedParams = await params;
+  const resolvedSearchParams = await searchParams;
+
+  const data = await getArticleDetail(resolvedParams.slug, {
+    draftKey: resolvedSearchParams.draftKey,
   }).catch(notFound);
   return (
     <Layout>
