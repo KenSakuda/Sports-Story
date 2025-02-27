@@ -15,22 +15,33 @@ import Cards from "@/app/_components/Cards";
 import ScrollToTop from "@/app/_components/ScrollToTop";
 import styles from "./page.module.css";
 
+// type Props = {
+//   searchParams: {
+//     q?: string;
+//   };
+// };
+
 type Props = {
-  searchParams: {
+  searchParams: Promise<{
     q?: string;
-  };
+  }>;
 };
 
 export const revalidate = 60;
 
-export function generateMetadata({ searchParams }: Props): Metadata {
+export async function generateMetadata({
+  searchParams,
+}: Props): Promise<Metadata> {
+  const resolvedSearchParams = await searchParams;
   return {
-    title: `「${searchParams.q}」の検索結果`,
+    title: `「${resolvedSearchParams.q}」の検索結果`,
   };
 }
 
 export default async function Page({ searchParams }: Props) {
-  const q = searchParams.q;
+  const resolvedSearchParams = await searchParams;
+
+  const q = resolvedSearchParams.q;
   const data = await getArticleList({
     limit: DETAIL_ARTICLE_LIST_LIMIT,
     q,
@@ -40,7 +51,7 @@ export default async function Page({ searchParams }: Props) {
       <div className={styles.contentWrapper}>
         <Main className={styles.mainContent}>
           <h1 className={styles.title}>
-            「{searchParams.q}」にヒットした記事一覧
+            「{resolvedSearchParams.q}」にヒットした記事一覧
           </h1>
           <p>{data.totalCount}件が見つかりました</p>
           <Cards articles={data.contents} />
