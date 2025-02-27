@@ -40,7 +40,7 @@ export default async function Page({ searchParams }: Props) {
       <div className={styles.contentWrapper}>
         <Main className={styles.mainContent}>
           <h1 className={styles.title}>
-            「{searchParams.q}」ヒットした記事一覧
+            「{searchParams.q}」にヒットした記事一覧
           </h1>
           <p>{data.totalCount}件が見つかりました</p>
           <Cards articles={data.contents} />

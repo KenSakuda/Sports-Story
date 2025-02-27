@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 // import Script from 'next/script';
 import "./globals.css";
 import Header from "@/app/_components/Header";
+import Menu from "@/app/_components/Menu";
 import Footer from "@/app/_components/Footer";
 // import { GTM } from '@/_components/GTM';
 
@@ -46,6 +47,7 @@ export default function RootLayout({
       {isProduction}
       <body>
         <Header />
+        <Menu />
         {children}
         <Footer />
       </body>
