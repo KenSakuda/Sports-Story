@@ -8,4 +8,4 @@ export const DETAIL_ARTICLE_LIST_LIMIT = 10;
 export const RANKING_LIMIT = 5;
 
 // サイトマップの件数
-export const SITEMAP_LIMIT = 1000;
+export const SITEMAP_LIMIT = 100;
