@@ -18,13 +18,14 @@ import Slider from "./_components/Slider";
 export const revalidate = 60;
 
 type Props = {
-  searchParams: {
+  searchParams: Promise<{
     rankingDraftKey?: string;
-    pickupDraftKey?: string;
-  };
+    // pickupDraftKey?: string;
+  }>;
 };
 
 export default async function Page({ searchParams }: Props) {
+  const resolvedsearchParams = await searchParams;
   const data = await getArticleList({
     limit: TOP_ARTICLE_LIST_LIMIT,
   });
@@ -47,7 +48,7 @@ export default async function Page({ searchParams }: Props) {
         </Main>
         <Sub className={styles.sidebar}>
           <Ad />
-          <Ranking draftKey={searchParams.rankingDraftKey} />
+          <Ranking draftKey={resolvedsearchParams.rankingDraftKey} />
           <Ad />
           <Predict />
           <SearchField />
